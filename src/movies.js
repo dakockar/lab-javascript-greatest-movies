@@ -99,13 +99,29 @@ function orderAlphabetically(arr) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 
-// Well I tried but I don't even know where to start...
+// DONE!!! Could you please give feedback?
+
 function turnHoursToMinutes(arr) {
     let clonedArr = JSON.parse(JSON.stringify(arr));
+    
+    for (let elem of clonedArr) {
+        let newDuration;
 
+        if (elem.duration.includes("h") && elem.duration.includes("m")) {       // if it includes both hours and minutes
+            let durationArr = elem.duration.split(" ");
+            newDuration = +durationArr[0].slice(0, -1) * 60 + +durationArr[1].slice(0, -3);         // "+" sign is to parse the string to number
+        }
+        else if (!elem.duration.includes("h")) {            // if it doesn't include hours
+            newDuration = +elem.duration.slice(0, -3);
+        }
+        else if (!elem.duration.includes("m")) {            // if it doesn't include minutes
+            newDuration = +elem.duration.slice(0, -1) * 60;
+        }
+        elem.duration = newDuration;
+    }
+
+    return clonedArr;
 }
-
-
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
